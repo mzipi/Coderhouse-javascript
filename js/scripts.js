@@ -1,3 +1,5 @@
+import calorias from "../json/calorias.json";
+
 let calorias = contador1 = contador2 = contador3 = contador4 = 0;
 const arreglo = [4];
 

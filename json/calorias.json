@@ -1,0 +1,18 @@
+[
+    {
+        "nombre": "Alfajor",
+        "calorias": 50
+    },
+    {
+        "nombre": "Ensalada",
+        "calorias": "10"
+    },
+    {
+        "nombre": "Pan",
+        "calorias": "30"
+    },
+    {
+        "nombre": "Carne",
+        "calorias": "25"
+    }
+]

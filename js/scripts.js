@@ -1,8 +1,5 @@
-import calorias from "../json/calorias.json";
-
 let calorias = contador1 = contador2 = contador3 = contador4 = 0;
-const arreglo = [4];
-
+/*
 class Comida {
     constructor(nombre, calorias) {
         this.nombre = nombre;
@@ -17,22 +14,25 @@ arreglo[0] = new Comida("Alfajor", 50);
 arreglo[1] = new Comida("Ensalada", 10);
 arreglo[2] = new Comida("Pan", 30);
 arreglo[3] = new Comida("Carne", 25);
-
+*/
 imprimir();
 caloriasAnteriores();
 
 //vvvvvvvvvvvvvvvvvvvvvvvv FUNIONES vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
-function imprimir(eleccion) {
+async function imprimir(eleccion) {
+    const res = await fetch("json/calorias.json");
+    const data = await res.json();
+
     const div = document.getElementById('main');
     const titulo = document.createElement("h1");
     const textoH1 = document.createTextNode("CONTADOR DE CALORÍAS");
     titulo.appendChild(textoH1);
     div.appendChild(titulo);
 
-    for (i = 0; i < arreglo.length; i++) {
+    for (i = 0; i < data.length; i++) {
         const item = document.createElement("p");
-        const textoItem = document.createTextNode(`${arreglo[i].nombre}`);
+        const textoItem = document.createTextNode(`${data[i].nombre}`);
         item.appendChild(textoItem);
         main.appendChild(item);
 
@@ -53,11 +53,12 @@ function imprimir(eleccion) {
     }
 };
 
-function botonMas () {
+async function botonMas () {
+    const res = await fetch("json/calorias.json");
+    const data = await res.json();
     switch (this.id) {
         case "boton1":
-            calorias += arreglo[0].calorias;
-            arreglo[0].mensaje();
+            calorias += data[0].calorias;
             document.getElementById("menos1").removeAttribute("disabled");
             document.getElementById("menos1").setAttribute("enabled", "");
             contador1++;
@@ -70,8 +71,7 @@ function botonMas () {
             }).showToast();
             break;
         case "boton2":
-            calorias += arreglo[1].calorias;
-            arreglo[1].mensaje();
+            calorias += data[1].calorias;
             document.getElementById("menos2").removeAttribute("disabled");
             document.getElementById("menos2").setAttribute("enabled", "");
             contador2++;
@@ -84,8 +84,7 @@ function botonMas () {
             }).showToast();
             break;
         case "boton3":
-            calorias += arreglo[2].calorias;
-            arreglo[2].mensaje();
+            calorias += data[2].calorias;
             document.getElementById("menos3").removeAttribute("disabled");
             document.getElementById("menos3").setAttribute("enabled", "");
             contador3++;
@@ -98,8 +97,7 @@ function botonMas () {
             }).showToast();
             break;
         case "boton4":
-            calorias += arreglo[3].calorias;
-            arreglo[3].mensaje();
+            calorias += data[3].calorias;
             document.getElementById("menos4").removeAttribute("disabled");
             document.getElementById("menos4").setAttribute("enabled", "");
             contador4++;
@@ -118,7 +116,9 @@ function botonMas () {
     localStorage.setItem('prevCal', calorias); 
 };
 
-function botonMenos () {
+async function botonMenos () {
+    const res = await fetch("json/calorias.json");
+    const data = await res.json();
     switch (this.id) {
         case "menos1":
             contador1--;
@@ -126,7 +126,7 @@ function botonMenos () {
                 document.getElementById("menos1").setAttribute("disabled", "");
                 document.getElementById("menos4").removeAttribute("enabled");
             }
-            calorias -= arreglo[0].calorias;
+            calorias -= data[0].calorias;
             Toastify({
                 text: "Eliminaste un alfajor del contador",
                 style: {
@@ -141,7 +141,7 @@ function botonMenos () {
                 document.getElementById("menos2").setAttribute("disabled", "");
                 document.getElementById("menos4").removeAttribute("enabled");
             }
-            calorias -= arreglo[1].calorias;
+            calorias -= data[1].calorias;
             Toastify({
                 text: "Eliminaste una porción de ensalada del contador",
                 style: {
@@ -156,7 +156,7 @@ function botonMenos () {
                 document.getElementById("menos3").setAttribute("disabled", "");
                 document.getElementById("menos4").removeAttribute("enabled");
             }
-            calorias -= arreglo[2].calorias;
+            calorias -= data[2].calorias;
             Toastify({
                 text: "Eliminaste una porción de pan del contador",
                 style: {
@@ -171,7 +171,7 @@ function botonMenos () {
                 document.getElementById("menos4").setAttribute("disabled", "");
                 document.getElementById("menos4").removeAttribute("enabled");
             }
-            calorias -= arreglo[3].calorias;
+            calorias -= data[3].calorias;
             Toastify({
                 text: "Eliminaste un porción de carne del contador",
                 style: {

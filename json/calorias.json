@@ -5,14 +5,14 @@
     },
     {
         "nombre": "Ensalada",
-        "calorias": "10"
+        "calorias": 10
     },
     {
         "nombre": "Pan",
-        "calorias": "30"
+        "calorias": 30
     },
     {
         "nombre": "Carne",
-        "calorias": "25"
+        "calorias": 25
     }
 ]

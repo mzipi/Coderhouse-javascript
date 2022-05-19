@@ -1,4 +1,4 @@
-import { caloriasTotales } from "./TotalCal.js";
+import { caloriasTotales } from "./totalCal.js";
 
 let calorias = 0;
 let contador1 = 0;
